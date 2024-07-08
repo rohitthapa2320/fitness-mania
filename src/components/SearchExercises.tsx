@@ -8,7 +8,7 @@ const SearchExercises = ():JSX.Element => {
     console.log("search...", search);
   }
   return(
-    <div className="flex flex-col justify-center items-center mt-5 lg:mt-[200px] p-5">
+    <div className="flex flex-col justify-center items-center my-5 lg:mt-[200px] p-5">
       <p className="font-bold text-[24px] lg:text-[44px] text-center mb-10">
         Awesome Exercises You <br/> 
         Should Know
