@@ -1,5 +1,4 @@
 import ExerciseCard from "./ExerciseCard";
-import HorizontalScrollBar from "./HorizontalScrollBar";
 
 const SimilarExercises = ({
   targetMuscleExercises,

@@ -1,6 +1,5 @@
 import { ExerciseInterface } from "../pages/Home";
 import Icon from "../assets/icons/gym.png";
-import { Button } from "./ui/button";
 
 interface DetailProps {
   exerciseDetails: ExerciseInterface;

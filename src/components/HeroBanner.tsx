@@ -1,5 +1,3 @@
-import { Button } from "./ui/button";
-
 import HeroBannerImage from "../assets/images/banner.jpg";
 
 const HeroBanner = ():JSX.Element => {
