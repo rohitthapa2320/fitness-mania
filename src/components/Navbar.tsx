@@ -9,7 +9,7 @@ const Navbar = ():JSX.Element => {
       </Link>
       <div className="flex items-center gap-8 text-lg font-semibold">
         <Link to="/" className="text-[#3a1212] border-b-4 border-b-[#9d4edd]">Home</Link>
-        <Link to="/exercises" className="text-[#3a1212]">Exercises</Link>
+        <a href="#exercises" className="text-[#3a1212]">Exercises</a>
       </div>
     </div>
   )

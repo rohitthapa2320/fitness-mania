@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ExerciseInterface } from "../pages/Home";
 import { exerciseOptions, fetchData } from "../lib/utils";
 import ExerciseCard from "./ExerciseCard";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination";
+import PaginationComponent from "./PaginationComponent";
 
 const Exercises = ({
   bodyPart,
@@ -13,6 +14,8 @@ const Exercises = ({
   exercises: ExerciseInterface [];
   setExercises: Dispatch<SetStateAction<ExerciseInterface[]>>
 }):JSX.Element => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [exercisesPerPage] = useState(9);
   useEffect(() => {
     const fetchExercisesData = async() => {
       let exerciseData: ExerciseInterface[]= [];
@@ -31,15 +34,34 @@ const Exercises = ({
       setExercises(exerciseData);
     };
     fetchExercisesData();
-  },[bodyPart])
+  },[bodyPart]);
+
+  const indexOfLastExercise = currentPage*exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise-exercisesPerPage;
+  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+
+  if(!currentExercises.length) return (
+    <div>Loading...</div>
+  )
   return(
-    <div className="mt-50px lg:mt-[100px] p-5">
-      <h4 className="font-bold text-[30px] lg:text-[44px] mb-10">Showing Results</h4>
+    <div id="exercises" className="mt-50px p-5">
+      <h4 className="font-bold text-[30px] mb-10">Exercises</h4>
       <div className="flex flex-wrap justify-center gap-[50px] lg:gap-[107px]">
         {
-          exercises.map((exercise: ExerciseInterface, index: number) => (
+          currentExercises.map((exercise: ExerciseInterface, index: number) => (
             <ExerciseCard key={index} exercise={exercise} />
           ))
+        }
+      </div>
+      <div className="flex justify-center items-center mt-10 lg:mt-16">
+        {
+          exercises.length > 9 && (
+            <PaginationComponent
+              currentPage={currentPage}
+              totalPages={Math.ceil(exercises.length/exercisesPerPage)}
+              onPageChange={setCurrentPage}
+            />
+          )
         }
       </div>
     </div>
