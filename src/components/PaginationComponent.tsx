@@ -20,7 +20,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({ currentPage, totalPage
   };
 
   return (
-    <div>
+    <div className='mt-12'>
       <Button 
         onClick={handlePrevious} 
         disabled={currentPage === 1}

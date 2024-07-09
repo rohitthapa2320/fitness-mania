@@ -12,9 +12,9 @@ const HeroBanner = ():JSX.Element => {
       <p className="text-lg font-serif leading-8 mb-8">
         Checkout the most effective exercises personalized to you...
       </p>
-      <Button className="bg-[#9d4edd] hover:bg-[#9d4edd]">
+      <a href="#exercises" className=" w-[200px] text-center p-[12px] text-white rounded-[6px] bg-[#9d4edd] hover:bg-[#9d4edd]">
         Explore Exercises
-      </Button>
+      </a>
       <img src={HeroBannerImage} alt="hero-banner" className="hero-banner-img" />
     </div>
   )

@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ExerciseInterface } from "../pages/Home";
 import { exerciseOptions, fetchData } from "../lib/utils";
 import ExerciseCard from "./ExerciseCard";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "./ui/pagination";
 import PaginationComponent from "./PaginationComponent";
 
 const Exercises = ({
@@ -15,7 +14,7 @@ const Exercises = ({
   setExercises: Dispatch<SetStateAction<ExerciseInterface[]>>
 }):JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [exercisesPerPage] = useState(9);
+  const [exercisesPerPage] = useState(10);
   useEffect(() => {
     const fetchExercisesData = async() => {
       let exerciseData: ExerciseInterface[]= [];

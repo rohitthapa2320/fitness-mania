@@ -4,9 +4,19 @@ import ExerciseVideos from "../components/ExerciseVideos";
 import SimilarExercises from "../components/SimilarExercises";
 import { useParams } from "react-router-dom";
 import { exerciseOptions, fetchData, youtubeOptions } from "../lib/utils";
+import { ExerciseInterface } from "./Home";
 
 const ExerciseDetails = ():JSX.Element => {
-  const [ exerciseDetails, setExerciseDetails ] = useState({});
+  const [ exerciseDetails, setExerciseDetails ] = useState<ExerciseInterface>({
+    bodyPart: "",
+  equipment:"",
+  gifUrl:"",
+  id:"",
+  name:"",
+  target:"",
+  secondaryMuscles: [],
+  instructions: []
+  });
   const [ exerciseVideos, setExerciseVideos ] = useState([]);
   const [ targetMuscleExercises, setTargetMuscleExercises ] = useState([]);
   const [ equipmentExercises, setEquipmentExercises ] = useState([]);
@@ -29,7 +39,7 @@ const ExerciseDetails = ():JSX.Element => {
         `${youtubeSearchUrl}/search?query=${exerciseDetailsData.name} exercise`,
         youtubeOptions
       );
-      setExerciseVideos(exerciseVideosData);
+      setExerciseVideos(exerciseVideosData.contents);
 
       const targetMuscleExercisesData = await fetchData(
         `${exerciseDbUrl}/exercises/target/${exerciseDetailsData.target}`,
@@ -51,10 +61,10 @@ const ExerciseDetails = ():JSX.Element => {
     <div>No Data...</div>
   )
   return(
-    <div className="mt-[60px] lg:mt-[96px]">
-      <Detail />
-      <ExerciseVideos />
-      <SimilarExercises />
+    <div>
+      <Detail exerciseDetails={exerciseDetails} />
+      <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetails.name} />
+      <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises}  />
     </div>
   )
 }
